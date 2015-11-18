@@ -1,0 +1,25 @@
+﻿@using FinancesManager.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+    <body>
+        
+        <div style="width: auto; background-color: #728ea7;">
+            @if (Session["User"]!=null)
+            {
+                @Html.ActionLink("Sign Out", "Logout", "User")
+            }
+            
+        </div> 
+        @RenderBody()
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

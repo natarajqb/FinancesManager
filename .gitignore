@@ -1,0 +1,8 @@
+FinancesManager/bin/*
+FinancesManager/App_Data/*
+FinancesManager/Css/*
+FinancesManager/Logs/*
+FinancesManager/obj/*
+packages/*
+FinancesManager/packages.config
+FinancesManager/App_Data/FinancesManagerContext-20151103152935.mdf
