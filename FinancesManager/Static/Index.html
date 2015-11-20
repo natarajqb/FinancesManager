@@ -4,96 +4,88 @@
   <script type="text/javascript" src="../Scripts/main.ctrl.js"></script>
   <link rel="stylesheet" href="../Content/Site.css">
 </head>
-
-<body ng-app="myApp" ng-controller="listCtrl" ng-init="GetExpenses()" ng-submit="AddExpense()"></body>
-<a href="#" id="AddLink" >Add</a>
-<a href="#" id="DeleteLink" >Delete</a>
-
-
-
-<div style="display:none" id="addDiv">
-<h1>Add new expense</h1>
 <form name="main.addForm">
-<div style="margin-left:1em;">
-		   	<div>
-		   		<label>Expense title</label>
-		   		<input type="text" ng-model="title" required>
-		   	</div>
-		   	<div>
-		   		<label>Amount</label>
-		   		<input type="number" ng-model="amount" required> Rs.
-		   	</div>
-		   		<div>
-		   		<label>Date</label>
-		   		<input type="date" ng-model="date" required>
-		   	</div>
+<div ng-app="myApp" ng-controller="listCtrl" ng-init="GetExpenses()"  style="margin-left:1.5em;margin-right:1.5em;">
+		<div style="margin-left:1em;" id="loginDiv">
+					<div>	
+						<label>Username</label>	   		
+				   		<input type="text" ng-model="username" id="txbUsername" required>
+				   	</div>
+				   	<div>
+				   		<label>Password</label>
+				   		<input type="password" ng-model="password" id="txbPassword" required> 
+				   	</div>
+				   
+			<input type="button" ng-click="VerifyCredentials()" style="margin-left:7em;" value="Sign in">
+		</div>
+
+		<div id="contentDiv" style="display:none;" >	
+		
+			
+			<span>Hi {{credentials[0]}},</span>		
+			<a href="#" id="signoutLink" style="float:right" ng-click="DisplaySignin()" >Sign out</a>
+
+
+
+
+				<div id="addDiv">
+				<h1>Add new expense</h1>
+
+								<div>
+										   	<div style="float:left;margin-right:2em;">
+										   		<label>Expense title</label>
+										   		<input type="text" ng-model="title" required>
+										   	</div>
+										   	<div style="float:left;margin-right:2em;">
+										   		<label>Amount</label>
+										   		<input type="number" ng-model="amount" required> Rs.
+										   	</div>
+										   	<div style="float:left;margin-right:2em;">
+										   		<label>Date</label>
+										   		<input type="date" ng-model="date" required>
+										   	</div>
+										   	<div style="float:left;margin-right:2em;margin-top:1.5em">
+										   		<input type="button" ng-click="AddExpense()" value="Add">
+										   	</div>
+								</div>
+						   			   		
+						   		
+						   	
+					   
+				</div>
+				<br clear="all">
+				<div >
+			<h1>All expenses</h1>
+
+				
+					<label style="float:left;" ><font color="blue">Select to delete expense(s)</font></label>
+					<input id="btnDelete" ng-click="DeleteEntry()"  type="button" style="float:left;height:2em;margin-left:10px;" value="Delete">
+
+				
+			<br clear="all" />
+
+
+					<table>
+						<tr style="font-weight:bold">
+						<td></td>
+						<td>Title</td>
+						<td>Amount</td>
+						<td>Date</td>
+						</tr>
+						<tr ng-repeat="expense in expenses | orderBy:'-Date'">
+						<td><input type="checkbox" ng-model="expense.selected" ng-change="AddToArray(expense)" id="chkSelect"></td>
+						<td><span>{{expense.Title}}</span></td>
+						<td><span> {{expense.Amount}}Rs.</span></td>
+						<td><span>   {{expense.Date}}</span></td>
+						</tr>
+					</table>
+					</div>
+		</div>			
 </div>
-		   			   		
-		   		<div style="margin-left:10em;">
-		   			<button>Add</button>		   			
-		   		</div>
-		   	
-	   </form>
-</div>
-<h1>All expenses</h1>
 
-<div id="deleteDiv" style="display:none;clear:both;"><label style="float:left;" ><font color="blue">Select to delete expense(s)</font></label><button id="btnDelete" ng-click="DeleteEntry()"  type="submit" style="float:left;height:2em;margin-left:10px;">Delete</button></div>
-<br clear="all" />
-
-
-<table style="margin-left:10px;">
-	<tr style="font-weight:bold">
-	<td></td>
-	<td>Title</td>
-	<td>Amount</td>
-	<td>Date</td>
-	</tr>
-	<tr ng-repeat="expense in expenses | orderBy:'-Date'">
-	<td><input type="checkbox" ng-model="expense.selected" ng-change="AddToArray(expense)" id="chkSelect" ></td>
-	<td><span>{{expense.Title}}</span></td>
-	<td><span> {{expense.Amount}}Rs.</span></td>
-	<td><span>   {{expense.Date}}</span></td>
-	</tr>
-</table>
+</form>
 
 
 
 
-<!-- <div>
-<ul>
-<li ng-repeat="expense in expenses" style="list-style-type: none;"><input type="checkbox" ng-model="expense.selected" ng-change="AddToArray(expense)" id="chkSelect" > <span>{{expense.Title}}</span><span> {{expense.Amount}}Rs.</span>
-<span>   {{expense.Date}}</span></li>
-</ul>
-</div> -->
-
-
-
-
-<script type="text/javascript">
-    document.addEventListener('DOMContentLoaded',function(){
-        document.getElementById('AddLink').addEventListener('click',function(){         
-        if(document.getElementById('addDiv').style.display == 'none')   
-        {
-            document.getElementById('addDiv').style.display = 'block';
-            document.getElementById('deleteDiv').style.display = 'none';
-        }
-        else
-        {
-             document.getElementById('addDiv').style.display = 'none';             
-        }
-        },false);
-
-         document.getElementById('DeleteLink').addEventListener('click',function(){         
-        if(document.getElementById('deleteDiv').style.display == 'none')   
-        {
-            document.getElementById('deleteDiv').style.display = 'block';
-            document.getElementById('addDiv').style.display = 'none';
-        }
-        else
-        {
-             document.getElementById('deleteDiv').style.display = 'none';             
-        }
-        },false);
-    },false);
-</script>
 </html>

@@ -64,6 +64,33 @@ $scope.selected_expenses = [];
         }        
     }
 
+ $scope.VerifyCredentials = function(){       
+    $http.get("http://localhost:2587/api/login")
+    .success(function(response) {        
+        $scope.credentials = response;
+        if($scope.credentials[0]==$scope.username && $scope.credentials[1]==$scope.password)
+        {
+            angular.element( document.querySelector( '#contentDiv' ) )[0].style.display='block';
+            angular.element( document.querySelector( '#loginDiv' ) )[0].style.display='none';
+            angular.element( document.querySelector( '#txbUsername' ) )[0].value='';
+            angular.element( document.querySelector( '#txbPassword' ) )[0].value='';
+        }
+        else
+            alert('Incorrect username/password.');
+
+    }).error(function(response){
+        alert("Error while logging in. Please try again!")
+    });
+    }
+
+     $scope.DisplaySignin = function(){                 
+                      
+            angular.element( document.querySelector( '#contentDiv' ) )[0].style.display='none';
+            angular.element( document.querySelector( '#loginDiv' ) )[0].style.display='block';
+          
+    }
+
      
 });
 
+    
