@@ -2,11 +2,11 @@
 <head>	
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
   <script type="text/javascript" src="../Scripts/main.ctrl.js"></script>
-  <link rel="stylesheet" href="../Content/Site.css">
+  <link rel="stylesheet" href="../Content/Site.css" type="text/css">
 </head>
 <form name="main.addForm">
-<div ng-app="myApp" ng-controller="listCtrl" ng-init="GetExpenses()"  style="margin-left:1.5em;margin-right:1.5em;">
-		<div style="margin-left:1em;" id="loginDiv">
+<div ng-app="myApp" ng-controller="listCtrl" ng-init="GetExpenses()"  id="TotalMargin">
+		<div id="loginDiv">
 					<div>	
 						<label>Username</label>	   		
 				   		<input type="text" ng-model="username" id="txbUsername" required>
@@ -16,7 +16,7 @@
 				   		<input type="password" ng-model="password" id="txbPassword" required> 
 				   	</div>
 				   
-			<input type="button" ng-click="VerifyCredentials()" style="margin-left:7em;" value="Sign in">
+			<input type="button" ng-click="VerifyCredentials()" id="VerifyMargin" value="Sign in">
 		</div>
 
 		<div id="contentDiv" style="display:none;" >	
@@ -32,19 +32,19 @@
 				<h1>Add new expense</h1>
 
 								<div>
-										   	<div style="float:left;margin-right:2em;">
+										   	<div id="Titles">
 										   		<label>Expense title</label>
 										   		<input type="text" ng-model="title" required>
 										   	</div>
-										   	<div style="float:left;margin-right:2em;">
+										   	<div id="Titles">
 										   		<label>Amount</label>
 										   		<input type="number" ng-model="amount" required> Rs.
 										   	</div>
-										   	<div style="float:left;margin-right:2em;">
+										   	<div id="Titles">
 										   		<label>Date</label>
 										   		<input type="date" ng-model="date" required>
 										   	</div>
-										   	<div style="float:left;margin-right:2em;margin-top:1.5em">
+										   	<div id="Titles" style="margin-top:1.5em">
 										   		<input type="button" ng-click="AddExpense()" value="Add">
 										   	</div>
 								</div>

@@ -586,6 +586,17 @@ tr.pager td {
     padding: 0 0.25em 0 0;
 }
 
+#TotalMargin {
+    margin-left:1.5em;
+    margin-right:1.5em;
+}
+#VerifyMargin{
+    margin-left:7em;
+}
+#Titles{
+    float:left;
+    margin-right:2em;
+}
 
 /********************
 *   Mobile Styles   *
